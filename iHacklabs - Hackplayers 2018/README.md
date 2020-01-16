@@ -1,4 +1,4 @@
-# iHackLabs CTF - JAX
+# iHackLabs - Hackplayers 2018 CTF - JAX
 
 ### Descripcion
 
