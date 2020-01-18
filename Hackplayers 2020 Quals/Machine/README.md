@@ -43,7 +43,8 @@ mysql:!:17779:0:99999:7:::
 statd:*:17779:0:99999:7::: 
 mongodb:!:17828:0:99999:7::: 
 postgres:*:18249:0:99999:7:::
-prequal:$6$aU.n0NTc$UPmUWgSkn4o2uDAL63UvWokvo0PrKZsz0VKB4FyfgpQ3OHtGydGgaiTvXhZbIBNamMA0VVnKXb0foX/DEzbY41:18249:0:99999:7::: tomcat8:*:18249:0:99999:7:::
+prequal:$6$aU.n0NTc$UPmUWgSkn4o2uDAL63UvWokvo0PrKZsz0VKB4FyfgpQ3OHtGydGgaiTvXhZbIBNamMA0VVnKXb0foX/DEzbY41:18249:0:99999:7::: 
+tomcat8:*:18249:0:99999:7:::
 ```
 Ahora toca crackear el hash de root, para ello hay que usar el diccionario [Kaonashi](https://github.com/kaonashi-passwords/Kaonashi)
 
