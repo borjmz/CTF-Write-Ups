@@ -6,6 +6,7 @@ We have seen a boy with an antenna next to the garage door. In one of his hands 
 ### Análisis
 Nos encontramos con un archivo wav captured.wav si lo abrimos con Audacity y ampliamos vemos rápidamente lo que parecen señales de una transmisión, si nos fijamos en la descripción del reto nos da la pista que puede ser un mando de garaje, estos suelen funcionar con el protocolo 433Mhz, la idea era convertir las ondas en 1s y 0s para posteriormente convertirlos a ASCII.
 
+![alt text](https://github.com/borjmz/CTF-Write-Ups/blob/master/Hackplayers%202019%20Quals/Ok%2C%20I%20got%20this/Audacity.png "Audacity")
 
 Para ello, mi compañero de equipo (@Gh0stpp7) hizo un pequeño script para esta labor.
 
