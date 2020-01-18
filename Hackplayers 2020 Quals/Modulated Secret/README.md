@@ -7,6 +7,7 @@ A radio amateur has approached us, very worried, saying that he has been able to
 
 Nos encontramos con un archivo llamado "damn", tras analizarlo usamos la tool SigDigger https://github.com/BatchDrake/SigDigger de BatchDrake muy recomendada ;) 
 
+![alt text](https://github.com/borjmz/CTF-Write-Ups/blob/master/Hackplayers%202020%20Quals/Modulated%20Secret/sigdigger.png "SigDigger")
 
 
 Una vez cargamos el archivo seleccionamos FM como Demodulador, ponemos el sample rate a 1M y empezamos a oir la transmision como podemos ver en la imagen la transmision esta dividida en 3 canales. Tras escuchar la emision en ingles 300 veces y probar otras 300 veces conseguimos obtener la flag x"DDD 
